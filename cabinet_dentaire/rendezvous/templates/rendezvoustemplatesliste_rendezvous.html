@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Rendez-vous</title>
+</head>
+<body>
+    <h1>Rendez-vous pris</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Service</th>
+                <th>Date du rendez-vous</th>
+                <th>Message</th>
+                <th>Date de création</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rdv in rendezvous %}
+            <tr>
+                <td>{{ rdv.nom }}</td>
+                <td>{{ rdv.prenom }}</td>
+                <td>{{ rdv.service }}</td>
+                <td>{{ rdv.date }}</td>
+                <td>{{ rdv.message }}</td>
+                <td>{{ rdv.date_creation }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">Aucun rendez-vous enregistré.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
