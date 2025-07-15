@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinique Ivoire Dentaire - Cabinet Dentaire à Marcory Zone 4</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#1e88e5',secondary:'#ffc107'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero-section {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.9) 40%, rgba(255, 255, 255, 0.7) 60%, rgba(255, 255, 255, 0.4) 80%, rgba(255, 255, 255, 0) 100%), url('images/image3.jpeg');
+        
+            background-size: cover;
+            background-position: center right;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #1e88e5;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .custom-checkbox {
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+        }
+        .custom-checkbox:hover input ~ .checkmark {
+            border-color: #1e88e5;
+        }
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: #1e88e5;
+            border-color: #1e88e5;
+        }
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+        .custom-checkbox .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 12px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-['Pacifico'] text-primary mr-8">Clinique Ivoire Dentaire</h1>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="text-gray-800 hover:text-primary font-medium transition">Accueil</a>
+                    <a href="#services" class="text-gray-800 hover:text-primary font-medium transition">Services</a>
+                    <a href="#equipe" class="text-gray-800 hover:text-primary font-medium transition">Équipe</a>
+                    <a href="#contact" class="text-gray-800 hover:text-primary font-medium transition">Contact</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center">
+                    <div class="w-10 h-10 flex items-center justify-center text-primary">
+                        <i class="ri-phone-line ri-lg"></i>
+                    </div>
+                    <span class="text-gray-800 font-medium">+225 07 00 00 08 41/ 07 00 00 09 15</span>
+                </div>
+                <a href="#rendez-vous" class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap font-medium hover:bg-primary/90 transition shadow-sm">Prendre RDV</a>
+                <button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700" id="mobile-menu-button">
+                    <i class="ri-menu-line ri-lg"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#accueil" class="text-gray-800 hover:text-primary font-medium py-2 transition">Accueil</a>
+                <a href="#services" class="text-gray-800 hover:text-primary font-medium py-2 transition">Services</a>
+                <a href="#equipe" class="text-gray-800 hover:text-primary font-medium py-2 transition">Équipe</a>
+                <a href="#contact" class="text-gray-800 hover:text-primary font-medium py-2 transition">Contact</a>
+                <div class="flex items-center py-2">
+                    <div class="w-10 h-10 flex items-center justify-center text-primary">
+                        <i class="ri-phone-line ri-lg"></i>
+                    </div>
+                    <span class="text-gray-800 font-medium">+225 07 00 00 08 41/ 07 00 00 09 15</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero-section min-h-[600px] flex items-center">
+        <div class="container mx-auto px-4 py-16 w-full">
+            <div class="max-w-xl">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Clinique Ivoire Dentaire</h2>
+                <p class="text-xl text-gray-700 mb-8">Votre sourire entre les mains d'experts à Marcory Zone 4</p>
+                <p class="text-gray-600 mb-8">Nous combinons expertise médicale et technologies de pointe pour vous offrir des soins dentaires d'excellence dans un environnement confortable et accueillant.</p>
+                <a href="#rendez-vous" class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-primary/90 transition shadow-md inline-flex items-center">
+                    <i class="ri-calendar-line ri-lg mr-2"></i>
+                    Prendre rendez-vous
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Présentation Section -->
+    <section id="equipe" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Notre Fondateur</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/3">
+                    <div class="rounded-lg overflow-hidden shadow-lg">
+                        <img src="images/images.jpeg" alt="Dr. Ajami Mahdi" class="w-full h-auto object-cover object-top">
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Dr. Ajami Mahdi</h3>
+                    <h4 class="text-xl text-primary font-medium mb-4">Chirurgien-Dentiste, Fondateur</h4>
+                    <p class="text-gray-700 mb-6">Bienvenue à la Clinique Ivoire Dentaire. Après avoir obtenu mon doctorat en chirurgie dentaire à l'Université de Paris et plus de 15 ans d'expérience dans des cliniques renommées en Europe, j'ai décidé de fonder cette clinique à Abidjan pour offrir des soins dentaires de qualité internationale.</p>
+                    <p class="text-gray-700 mb-6">Spécialisé en implantologie et en esthétique dentaire, je m'engage avec mon équipe à vous proposer des traitements personnalisés dans un environnement à la fois professionnel et chaleureux. Notre mission est de vous aider à retrouver un sourire sain et éclatant tout en vous offrant une expérience de soins exceptionnelle.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center bg-blue-50 px-4 py-2 rounded-lg">
+                            <div class="w-10 h-10 flex items-center justify-center text-primary">
+                                <i class="ri-graduation-cap-line ri-lg"></i>
+                            </div>
+                            <span class="ml-2 text-gray-800">Doctorat en Chirurgie Dentaire</span>
+                        </div>
+                        <div class="flex items-center bg-blue-50 px-4 py-2 rounded-lg">
+                            <div class="w-10 h-10 flex items-center justify-center text-primary">
+                                <i class="ri-award-line ri-lg"></i>
+                            </div>
+                            <span class="ml-2 text-gray-800">15+ ans d'expérience</span>
+                        </div>
+                        <div class="flex items-center bg-blue-50 px-4 py-2 rounded-lg">
+                            <div class="w-10 h-10 flex items-center justify-center text-primary">
+                                <i class="ri-focus-3-line ri-lg"></i>
+                            </div>
+                            <span class="ml-2 text-gray-800">Spécialiste en Implantologie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Nos Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Découvrez notre gamme complète de services dentaires conçus pour répondre à tous vos besoins en matière de santé bucco-dentaire.</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:translate-y-[-5px]">
+                    <div style="width: 100%; height: 50%; overflow: hidden;">
+                        <img src="images/image4.jpeg">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-4">
+                            <i class="ri-health-book-line ri-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Soins Dentaires Généraux</h3>
+                        <p class="text-gray-600 mb-4">Examens complets, détartrages, traitements des caries et soins préventifs pour maintenir une bonne santé bucco-dentaire.</p>
+                        <a href="#" class="text-primary font-medium inline-flex items-center hover:underline">
+                            En savoir plus
+                            <i class="ri-arrow-right-line ri-lg ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:translate-y-[-5px]">
+                    <div style="width: 100%; height: 50%; overflow: hidden;">
+                        <img src="images/image1.jpeg">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-4">
+                            <i class="ri-emotion-happy-line ri-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Orthodontie</h3>
+                        <p class="text-gray-600 mb-4">Correction des malocclusions et alignement des dents avec des appareils traditionnels ou invisibles pour un sourire harmonieux.</p>
+                        <a href="#" class="text-primary font-medium inline-flex items-center hover:underline">
+                            En savoir plus
+                            <i class="ri-arrow-right-line ri-lg ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:translate-y-[-5px]">
+                    <div style="width: 100%; height: 50%; overflow: hidden;">
+                        <img src="images/image2.jpeg">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-4">
+                            <i class="ri-surgical-mask-line ri-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Implantologie</h3>
+                        <p class="text-gray-600 mb-4">Remplacement permanent des dents manquantes par des implants dentaires pour retrouver fonctionnalité et esthétique.</p>
+                        <a href="#" class="text-primary font-medium inline-flex items-center hover:underline">
+                            En savoir plus
+                            <i class="ri-arrow-right-line ri-lg ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:translate-y-[-5px]">
+                    <div style="width: 100%; height: 50%; overflow: hidden;">
+                        <img src="images/image5.jpeg">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-4">
+                            <i class="ri-sun-line ri-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Blanchiment Dentaire</h3>
+                        <p class="text-gray-600 mb-4">Techniques professionnelles pour éclaircir la teinte de vos dents et vous offrir un sourire plus blanc et éclatant.</p>
+                        <a href="#" class="text-primary font-medium inline-flex items-center hover:underline">
+                            En savoir plus
+                            <i class="ri-arrow-right-line ri-lg ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:translate-y-[-5px]">
+                    <div style="width: 100%; height: 50%; overflow: hidden;">
+                        <img src="images/image6.jpeg">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-4">
+                            <i class="ri-brush-line ri-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Esthétique Dentaire</h3>
+                        <p class="text-gray-600 mb-4">Facettes, couronnes et autres solutions pour transformer votre sourire et sublimer votre apparence.</p>
+                        <a href="#" class="text-primary font-medium inline-flex items-center hover:underline">
+                            En savoir plus
+                            <i class="ri-arrow-right-line ri-lg ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:translate-y-[-5px]">
+                    <div style="width: 100%; height: 50%; overflow: hidden;">
+                        <img src="images/image7.jpeg">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-4">
+                            <i class="ri-parent-line ri-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Dentisterie Pédiatrique</h3>
+                        <p class="text-gray-600 mb-4">Soins adaptés aux enfants dans une ambiance rassurante pour développer de bonnes habitudes d'hygiène bucco-dentaire.</p>
+                        <a href="#" class="text-primary font-medium inline-flex items-center hover:underline">
+                            En savoir plus
+                            <i class="ri-arrow-right-line ri-lg ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rendez-vous Section -->
+<section id="rendez-vous" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">Prendre Rendez-vous</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Réservez votre consultation en quelques clics et prenez soin de votre santé bucco-dentaire.
+      </p>
+      <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+    </div>
+
+    <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8">
+      <form id="appointment-form">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="nom" class="block text-gray-700 font-medium mb-2">Nom</label>
+            <input type="text" id="nom" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20" placeholder="Votre nom">
+          </div>
+
+          <div>
+            <label for="prenom" class="block text-gray-700 font-medium mb-2">Prénom</label>
+            <input type="text" id="prenom" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20" placeholder="Votre prénom">
+          </div>
+
+          <div>
+            <label for="telephone" class="block text-gray-700 font-medium mb-2">Téléphone</label>
+            <input type="tel" id="telephone" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20" placeholder="+225 XX XX XX XX">
+          </div>
+
+          <div>
+            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+            <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20" placeholder="votre@email.com">
+          </div>
+
+          <div>
+            <label for="date_souhaitee" class="block text-gray-700 font-medium mb-2">Date souhaitée</label>
+            <input type="date" id="date_souhaitee" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20">
+          </div>
+
+          <div>
+            <label for="service_id" class="block text-gray-700 font-medium mb-2">Service</label>
+            <div class="relative">
+              <select id="service_id" required class="w-full px-4 py-2 border border-gray-300 rounded appearance-none focus:ring-2 focus:ring-primary/20 pr-8">
+                <option value="" disabled selected>Choisir un service</option>
+                <!-- ⚠️ Remplacer ces valeurs par les IDs de service en base -->
+                <option value="1">Consultation générale</option>
+                <option value="2">Urgence dentaire</option>
+                <option value="3">Détartrage</option>
+                <option value="4">Orthodontie</option>
+                <option value="5">Implantologie</option>
+                <option value="6">Blanchiment</option>
+                <option value="7">Esthétique dentaire</option>
+                <option value="8">Dentisterie pédiatrique</option>
+              </select>
+              <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-500">
+                <i class="ri-arrow-down-s-line"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <label for="message" class="block text-gray-700 font-medium mb-2">Message (optionnel)</label>
+          <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20" placeholder="Décrivez brièvement votre besoin ou votre problème dentaire..."></textarea>
+        </div>
+
+        <div class="mb-6">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="consentement" required />
+            <span class="checkmark"></span>
+            <span class="ml-2 text-gray-700">J'accepte que mes données soient utilisées pour traiter ma demande de rendez-vous</span>
+          </label>
+        </div>
+
+        <button type="submit" class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-primary/90 transition shadow-md w-full md:w-auto">
+          Confirmer le rendez-vous
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Nous Contacter</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Notre équipe est à votre disposition pour répondre à toutes vos questions.</p>
+                <div class="w-20 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-lg shadow-md p-6 h-full">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Coordonnées</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-full mr-4 flex-shrink-0">
+                                    <i class="ri-map-pin-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900 mb-1">Adresse</h4>
+                                    <p class="text-gray-600">Clinique Ivoire Dentaire<br>Rue des Jardins, Marcory Zone 4<br>Abidjan, Côte d'Ivoire</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-full mr-4 flex-shrink-0">
+                                    <i class="ri-phone-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900 mb-1">Téléphone</h4>
+                                    <p class="text-gray-600">+225 07 0708 0910</p>
+                                    <p class="text-gray-600">+225 05 0506 0708</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-full mr-4 flex-shrink-0">
+                                    <i class="ri-mail-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900 mb-1">Email</h4>
+                                    <p class="text-gray-600">contact@cliniqueivoiredentaire.ci</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-full mr-4 flex-shrink-0">
+                                    <i class="ri-time-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900 mb-1">Horaires d'ouverture</h4>
+                                    <p class="text-gray-600">Lundi - Vendredi: 8h00 - 18h00</p>
+                                    <p class="text-gray-600">Samedi: 9h00 - 15h00</p>
+                                    <p class="text-gray-600">Dimanche: Fermé</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Suivez-nous</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 flex items-center justify-center bg-blue-100 text-primary rounded-full hover:bg-primary hover:text-white transition">
+                                    <i class="ri-facebook-fill ri-lg"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center bg-blue-100 text-primary rounded-full hover:bg-primary hover:text-white transition">
+                                    <i class="ri-instagram-line ri-lg"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center bg-blue-100 text-primary rounded-full hover:bg-primary hover:text-white transition">
+                                    <i class="ri-linkedin-fill ri-lg"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center bg-blue-100 text-primary rounded-full hover:bg-primary hover:text-white transition">
+                                    <i class="ri-whatsapp-line ri-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
+                        <div class="h-full w-full">
+                            <img src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png" alt="Carte" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-2xl font-['Pacifico'] text-white mb-4">Clinique Ivoire Dentaire</h3>
+                    <p class="text-gray-400 max-w-md">Votre clinique dentaire de confiance à Marcory Zone 4, offrant des soins dentaires de qualité pour toute la famille.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-medium mb-4">Liens Rapides</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#accueil" class="text-gray-400 hover:text-white transition">Accueil</a></li>
+                            <li><a href="#services" class="text-gray-400 hover:text-white transition">Services</a></li>
+                            <li><a href="#equipe" class="text-gray-400 hover:text-white transition">Équipe</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-medium mb-4">Services</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Soins Dentaires</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Orthodontie</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Implantologie</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Blanchiment</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-medium mb-4">Contact</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <i class="ri-map-pin-line ri-lg mr-2"></i>
+                                <span class="text-gray-400">Marcory Zone 4, Abidjan</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="ri-phone-line ri-lg mr-2"></i>
+                                <span class="text-gray-400">+225 07 0708 0910</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="ri-mail-line ri-lg mr-2"></i>
+                                <span class="text-gray-400">contact@cliniqueivoiredentaire.ci</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Clinique Ivoire Dentaire. Tous droits réservés.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm">Politique de confidentialité</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm">Mentions légales</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm">Plan du site</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# system
+.DS_Store
+*.swp
+
+
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+*.log
+*.env
+.env.*
+
+# virtual env
+venv/
+env/
+.env/
+
+
+# IDE
+.vscode/
+.idea/
+
+# system
+.DS_Store
+*.swp
