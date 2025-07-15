@@ -27,11 +27,11 @@ class HoraireAdmin(admin.ModelAdmin):
 
 @admin.register(RendezVous)
 class RendezVousAdmin(admin.ModelAdmin):
-    list_display = ['nom_complet', 'service', 'date_souhaitee', 'telephone', 'status', 'created_at']
-    list_filter = ['status', 'service', 'date_souhaitee', 'created_at']
+    list_display = ['nom_complet', 'service', 'date_souhaitee', 'telephone', 'statut', 'created_at']
+    list_filter = ['statut', 'service', 'date_souhaitee', 'created_at']
     search_fields = ['nom', 'prenom', 'telephone', 'email']
     ordering = ['-created_at']
-    list_editable = ['status']
+    list_editable = ['statut']
     readonly_fields = ['created_at', 'updated_at']
     
     fieldsets = (
@@ -42,7 +42,7 @@ class RendezVousAdmin(admin.ModelAdmin):
             'fields': ('service', 'date_souhaitee', 'message')
         }),
         ('Gestion', {
-            'fields': ('status', 'notes_admin', 'date_confirmation')
+            'fields': ('statut', 'notes_admin', 'date_confirmation')
         }),
         ('Timestamps', {
             'fields': ('created_at', 'updated_at'),

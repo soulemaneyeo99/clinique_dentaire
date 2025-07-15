@@ -1,12 +1,13 @@
 import os
 from pathlib import Path
 from decouple import config
+from corsheaders.defaults import default_headers
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY
 SECRET_KEY = config('SECRET_KEY', default='your-secret-key-here')
-DEBUG = True #config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
 
 # Application definition
@@ -101,7 +102,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# REST Framework
+# REST Framework (si vous l'utilisez)
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -113,29 +114,65 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20,
 }
 
-# CORS Settings
+# CORS Settings - Configuration pour développement et production
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8080",
     "http://127.0.0.1:8080",
-    # Ajouter votre domaine de production
+    "http://localhost:5500",  # Live Server VSCode
+    "http://127.0.0.1:5500",  # Live Server VSCode
+    "http://localhost:8000",  # Django dev server
+    "http://127.0.0.1:8000",  # Django dev server
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'X-CSRFToken',
+]
 
 # CSRF Settings
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    # Ajouter votre domaine de production
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
 ]
+
+# Configuration pour les cookies CSRF
+CSRF_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_HTTPONLY = False  # Important pour permettre l'accès via JavaScript
+CSRF_COOKIE_SAMESITE = 'Lax'
 
 # Email configuration (pour les notifications de RDV)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com')
 EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='soulemaneyeo99@gmail.com')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='noreply@clinique-ivoire-dentaire.com')
+DEFAULT_FROM_EMAIL = config(
+    'DEFAULT_FROM_EMAIL',
+    default='Clinique Ivoire Dentaire <soulemaneyeo99@gmail.com>'
+)
+
+# Logging pour le développement
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}

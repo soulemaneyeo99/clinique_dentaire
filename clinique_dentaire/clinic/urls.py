@@ -1,18 +1,24 @@
 # ==========================================
-# 6. URLS.PY (App clinic)
+# URLS.PY - Configuration des URLs Django
 # ==========================================
+from .views import PrendreRendezVousView
+
 from django.urls import path
 from . import views
 
-app_name = 'clinic'
-
+# Configuration des URLs pour l'application clinique
 urlpatterns = [
-    # API Endpoints
-    path('api/services/', views.ServiceListView.as_view(), name='services-list'),
-    path('api/equipe/', views.EquipeListView.as_view(), name='equipe-list'),
-    path('api/horaires/', views.HoraireListView.as_view(), name='horaires-list'),
+    # Page principale
+    path('', views.home, name='home'),
+    
+    # APIs pour récupérer les données
+    path('api/services/', views.get_services, name='get_services'),
+    path('api/equipe/', views.get_equipe, name='get_equipe'),
+    path('api/horaires/', views.get_horaires, name='get_horaires'),
     
     # Endpoints pour les formulaires
-    path('prendre-rendez-vous/', views.prendre_rendezvous, name='prendre-rendez-vous'),
-    path('api/contact/', views.contact_message, name='contact-message'),
+    path('prendre-rendez-vous/', PrendreRendezVousView.as_view(), name='prendre_rendezvous'),
+
+    path('contact/', views.contact_message, name='contact_message'),
 ]
+

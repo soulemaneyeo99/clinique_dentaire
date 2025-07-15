@@ -1,90 +1,116 @@
-// ============================
-// 1. CSRF Token Getter (Django)
-// ============================
+// ===============================================
+// 1. CSRF Token Helper (sécurisé pour Django)
+// ===============================================
 function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        document.cookie.split(';').forEach(cookie => {
-            const trimmed = cookie.trim();
-            if (trimmed.startsWith(name + '=')) {
-                cookieValue = decodeURIComponent(trimmed.substring(name.length + 1));
-            }
-        });
+  const cookies = document.cookie?.split(';') || [];
+  for (const cookie of cookies) {
+    const trimmed = cookie.trim();
+    if (trimmed.startsWith(`${name}=`)) {
+      return decodeURIComponent(trimmed.substring(name.length + 1));
     }
-    return cookieValue;
+  }
+  return null;
 }
 
-// ============================
-// 2. POST Request to Backend
-// ============================
-async function prendreRendezVous(formData) {
-    const csrftoken = getCookie('csrftoken');
-    try {
-        const response = await fetch('http://127.0.0.1:8000/prendre-rendez-vous/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrftoken,
-            },
-            body: JSON.stringify(formData)
-        });
-
-        return await response.json();
-    } catch (error) {
-        console.error('Erreur réseau lors de la prise de RDV :', error);
-        return { status: 'error', message: 'Erreur de connexion serveur.' };
-    }
-}
-
-// ============================
-// 3. Form Submit Handler
-// ============================
+// ===============================================
+// 2. Handler principal du formulaire de RDV
+// ===============================================
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('appointment-form');
+  const form = document.querySelector('#appointment-form');
+  if (!form) return;
 
-    if (!form) return;
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    // =====================
+    // A. Collecte des champs
+    // =====================
+    const nom = form.nom?.value.trim();
+    const prenom = form.prenom?.value.trim();
+    const telephone = form.telephone?.value.trim();
+    const email = form.email?.value.trim();
+    const date_souhaitee = form.date_souhaitee?.value;
+    const service = parseInt(form.service_id?.value, 10);
+    const message = form.message?.value.trim() || '';
+    const consentement = form.consentement?.checked;
 
-        const nom = document.getElementById('nom')?.value.trim();
-        const prenom = document.getElementById('prenom')?.value.trim();
-        const telephone = document.getElementById('telephone')?.value.trim();
-        const email = document.getElementById('email')?.value.trim();
-        const date_souhaitee = document.getElementById('date_souhaitee')?.value;
-        const service = document.getElementById('service_id')?.value;
-        const message = document.getElementById('message')?.value.trim();
-        const consentement = document.getElementById('consentement')?.checked;
+    // =====================
+    // B. Validation frontend
+    // =====================
+    if (!nom || !prenom || !telephone || !email || !date_souhaitee || isNaN(service)) {
+      alert("❌ Veuillez remplir tous les champs obligatoires.");
+      return;
+    }
 
-        // Champs requis
-        if (!nom || !prenom || !telephone || !email || !date_souhaitee || !service || !consentement) {
-            alert("Merci de remplir tous les champs obligatoires et d'accepter le consentement.");
-            return;
-        }
+    if (!consentement) {
+      alert("⚠️ Vous devez accepter le traitement de vos données.");
+      return;
+    }
 
-        const serviceId = parseInt(service);
-        if (isNaN(serviceId)) {
-            alert("Le service sélectionné est invalide.");
-            return;
-        }
+    // =====================
+    // C. Construction du payload
+    // =====================
+    const formData = {
+      nom,
+      prenom,
+      telephone,
+      email,
+      date_souhaitee,
+      service,
+      message
+      // statut est géré côté backend (par défaut à 'pending')
+    };
 
-        const formData = {
-            nom,
-            prenom,
-            telephone,
-            email,
-            date_souhaitee,
-            service: serviceId,
-            message
-        };
+    // =====================
+    // D. Requête vers l'API Django
+    // =====================
+    try {
+      const csrftoken = getCookie('csrftoken');
+      console.log("[📤 Données envoyées]", formData);
+      const response = await fetch('http://127.0.0.1:8000/prendre-rendez-vous/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrftoken
+        },
+        body: JSON.stringify(formData)
+      });
+let result = {};
+try {
+  result = await response.json();
+  console.log("[🟡 RESULTAT BACKEND]", result); // AJOUTE CECI
+} catch (e) {
+  console.warn("Réponse vide ou non-JSON");
+}
 
-        const result = await prendreRendezVous(formData);
+if (result.status === 'ok') {
+    alert("✅ Rendez-vous enregistré avec succès !");
+    form.reset();
+} else {
+    console.warn("[🟡 RESULTAT BACKEND]", result);
+    
+    // Affiche les erreurs de manière lisible
+    const errors = result.errors || {};
+    let messages = Object.entries(errors).map(([field, errs]) => {
+        return `${field} : ${errs.join(', ')}`;
+    }).join('\n');
 
-        if (result.status === 'ok') {
-            alert("✅ Votre rendez-vous a été enregistré avec succès !");
-            form.reset();
-        } else {
-            alert("❌ Une erreur est survenue : " + result.message);
-        }
-    });
+    alert(`❌ Erreur: ${result.message}\n\n${messages}`);
+}
+
+      // =====================
+      // E. Gestion des réponses
+      // =====================
+      if (response.ok) {
+        alert("✅ Rendez-vous enregistré avec succès !");
+        form.reset();
+      } else {
+        const message = result?.message || result?.detail || Object.values(result)?.[0] || 'Une erreur est survenue.';
+        alert(`❌ Erreur: ${message}`);
+      }
+    } catch (err) {
+      console.error('[ERREUR]', err);
+      alert("❌ Erreur de connexion au serveur. Veuillez réessayer.");
+    }
+  });
 });
